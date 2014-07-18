@@ -28,7 +28,13 @@ def source2d(x,y,r):
     
     return res
 
+#wrapper for fftshift(ifft(fftshift(var))) to make editing easier
+def fwrp(var):
+    return fftshift(fft(fftshift(var)))
 
+def ifwrp(var):
+    return ifftshift(ifft(ifftshift(var)))
+    
 #stolen from stackoverflow to test ptsource function
 fig = plt.figure(figsize=(6, 3.2))
 
@@ -144,11 +150,11 @@ print source
 #sources=
 
 #detectors * source  und fourier davon
-#sdet=source*ifftshift(ifft(ifftshift(det1)))*ifftshift(ifft(ifftshift(det2)))
-#sdets=sources*ifftshift(ifft(ifftshift(det1)))*ifftshift(ifft(ifftshift(det2)))
+#sdet=source*ifwrp(det1)*iwrp(det2)
+#sdets=sources*ifwrp(det1)*iwrp(det2)
 
-#result=fftshift(fft(fftshift(sdet)))
-#results=fftshift(fft(fftshift(sdets)))
+#result=fwrp(sdet)
+#results=fwrp(sdets)))
 
 #G2=abs(result)**2
 #G2s=abs(results)**2
