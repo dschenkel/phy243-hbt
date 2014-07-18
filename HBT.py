@@ -28,6 +28,21 @@ def source2d(x,y,r):
     
     return res
 
+
+#function which delivers a point-source: width/height x/y, point source in the middle with radius r pixels
+def randsource2d(x,y,r):
+    res = []
+    newlin = []
+    for i in range (-x/2, +x/2):
+        for j in range (-y/2, +y/2):
+            if(sqrt(i**2+j**2)<=r):
+                newlin.append(randint(0,2))
+            else:
+                newlin.append(0)
+        res.append(newlin)
+        newlin = []
+    
+    return res
 #wrapper for fftshift(ifft(fftshift(var))) to make editing easier
 def fwrp(var):
     return fftshift(fft(fftshift(var)))
