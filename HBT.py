@@ -155,14 +155,14 @@ source = source2d(2000,2000,200)
             
 #print source
 #Eine Scheibe nicht nur aus 1 sondern unregelmässig
-#sources=
+#sources=randsource2d(2000,2000,200)
 
 #detectors * source  und fourier davon
 sdet=source*ifwrp(det1)*ifwrp(det2)
 #sdets=sources*ifwrp(det1)*ifwrp(det2)
 
 result=fwrp(sdet)
-#results=fwrp(sdets)))
+#results=fwrp(sdets)
 
 G2=abs(result)**2
 #G2s=abs(results)**2
