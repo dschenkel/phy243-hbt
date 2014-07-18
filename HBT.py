@@ -50,20 +50,14 @@ def fwrp(var):
 def ifwrp(var):
     return ifftshift(ifft(ifftshift(var)))
     
-#stolen from stackoverflow to test ptsource function
-#fig = plt.figure(figsize=(6, 3.2))
+    
+def fwrp2(var):
+    return fftshift(fft2(fftshift(var)))
 
-#ax = fig.add_subplot(111)
-#ax.set_title('colorMap')
-#plt.imshow(source2d(1000,1000,200))
-#ax.set_aspect('equal')
-#cax = fig.add_axes([0.12, 0.1, 0.78, 0.8])
-#cax.get_xaxis().set_visible(False)
-#cax.get_yaxis().set_visible(False)
-#cax.patch.set_alpha(0)
-#cax.set_frame_on(False)
-#plt.colorbar(orientation='vertical')
-#plt.show()
+def ifwrp2(var):
+    return ifftshift(ifft2(ifftshift(var)))
+    
+
 
 
 
@@ -148,7 +142,7 @@ b2=a2+dx
 
 
 #Scheiben (im Fourierraum)
-det1=source2d(2000,2000,1500)
+det1=source2d(2000,2000,800)
 det2 = det1
 #eine Scheibe aus 1 und rundherum 0 (im Otsraum)
 source = source2d(2000,2000,200)
@@ -158,10 +152,10 @@ source = source2d(2000,2000,200)
 #sources=randsource2d(2000,2000,200)
 
 #detectors * source  und fourier davon
-sdet=source*ifwrp(det1)*ifwrp(det2)
+sdet=source*ifwrp2(det1)*ifwrp2(det2)
 #sdets=sources*ifwrp(det1)*ifwrp(det2)
 
-result=fwrp(sdet)
+result=fwrp2(sdet)
 #results=fwrp(sdets)
 
 G2=abs(result)**2
@@ -170,9 +164,24 @@ G2=abs(result)**2
 #plot(fwrp(source)) #besselfunc
 
 
-plot(G2)
+#plot(G2)
 
 
+#stolen from stackoverflow to test ptsource function
+fig = plt.figure(figsize=(6, 3.2))
 
+ax = fig.add_subplot(111)
+ax.set_title('colorMap')
+plt.imshow(G2)
+ax.set_aspect('equal')
+cax = fig.add_axes([0.12, 0.1, 0.78, 0.8])
+cax.get_xaxis().set_visible(False)
+cax.get_yaxis().set_visible(False)
+cax.patch.set_alpha(0)
+cax.set_frame_on(False)
+plt.colorbar(orientation='vertical')
+plt.show()
 
 show()
+
+
