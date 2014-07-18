@@ -8,6 +8,44 @@ Created on Tue Jul 01 15:56:58 2014
 from pylab import *
 from scipy.integrate import quad
 from math import factorial
+import numpy as np
+import matplotlib as ml
+import matplotlib.pyplot as plt
+
+
+#function which delivers a point-source: width/height x/y, point source in the middle with radius r pixels
+def source2d(x,y,r):
+    res = []
+    newlin = []
+    for i in range (-x/2, +x/2):
+        for j in range (-y/2, +y/2):
+            if(sqrt(i**2+j**2)<=r):
+                newlin.append(1)
+            else:
+                newlin.append(0)
+        res.append(newlin)
+        newlin = []
+    
+    return res
+
+
+#stolen from stackoverflow to test ptsource function
+fig = plt.figure(figsize=(6, 3.2))
+
+ax = fig.add_subplot(111)
+ax.set_title('colorMap')
+plt.imshow(source2d(1000,1000,200))
+ax.set_aspect('equal')
+cax = fig.add_axes([0.12, 0.1, 0.78, 0.8])
+cax.get_xaxis().set_visible(False)
+cax.get_yaxis().set_visible(False)
+cax.patch.set_alpha(0)
+cax.set_frame_on(False)
+plt.colorbar(orientation='vertical')
+plt.show()
+
+
+
 
 d=50
 D=5500
@@ -94,14 +132,14 @@ r1 =1000
 r2=1000
 area1 = pi*r1**2
 area2 = pi*r2**2
-#print area1, area2
+print area1, area2
 det1=area1
 det2=area2
 
 #eine Scheibe aus 1 und rundherum 0 (im Otsraum)
-source=
-            
 
+            
+print source
 #Eine Scheibe nicht nur aus 1 sondern unregelmässig
 #sources=
 
