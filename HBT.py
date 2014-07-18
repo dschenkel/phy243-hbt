@@ -148,7 +148,7 @@ b2=a2+dx
 
 
 #Scheiben (im Fourierraum)
-det1=source2d(2000,2000,1000)
+det1=source2d(2000,2000,1500)
 det2 = det1
 #eine Scheibe aus 1 und rundherum 0 (im Otsraum)
 source = source2d(2000,2000,200)
@@ -167,10 +167,10 @@ result=fwrp(sdet)
 G2=abs(result)**2
 #G2s=abs(results)**2
 
-plot(fwrp(source)) #besselfunc
+#plot(fwrp(source)) #besselfunc
 
 
-#plot(G2)
+plot(G2)
 
 
 
