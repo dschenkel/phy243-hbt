@@ -2,7 +2,7 @@
 """
 Created on Tue Jul 01 15:56:58 2014
 
-@author: Annina
+@author: Annina, David
 """
 
 from pylab import *
@@ -36,19 +36,19 @@ def ifwrp(var):
     return ifftshift(ifft(ifftshift(var)))
     
 #stolen from stackoverflow to test ptsource function
-fig = plt.figure(figsize=(6, 3.2))
+#fig = plt.figure(figsize=(6, 3.2))
 
-ax = fig.add_subplot(111)
-ax.set_title('colorMap')
-plt.imshow(source2d(1000,1000,200))
-ax.set_aspect('equal')
-cax = fig.add_axes([0.12, 0.1, 0.78, 0.8])
-cax.get_xaxis().set_visible(False)
-cax.get_yaxis().set_visible(False)
-cax.patch.set_alpha(0)
-cax.set_frame_on(False)
-plt.colorbar(orientation='vertical')
-plt.show()
+#ax = fig.add_subplot(111)
+#ax.set_title('colorMap')
+#plt.imshow(source2d(1000,1000,200))
+#ax.set_aspect('equal')
+#cax = fig.add_axes([0.12, 0.1, 0.78, 0.8])
+#cax.get_xaxis().set_visible(False)
+#cax.get_yaxis().set_visible(False)
+#cax.patch.set_alpha(0)
+#cax.set_frame_on(False)
+#plt.colorbar(orientation='vertical')
+#plt.show()
 
 
 
@@ -138,28 +138,30 @@ r1 =1000
 r2=1000
 area1 = pi*r1**2
 area2 = pi*r2**2
-print area1, area2
-det1=area1
-det2=area2
+#print area1, area2
+#det1=area1
+#det2=area2
 
+det1=source2d(2000,2000,1000)
+det2 = det1
 #eine Scheibe aus 1 und rundherum 0 (im Otsraum)
-
+source = source2d(2000,2000,200)
             
-print source
+#print source
 #Eine Scheibe nicht nur aus 1 sondern unregelmässig
 #sources=
 
 #detectors * source  und fourier davon
-#sdet=source*ifwrp(det1)*iwrp(det2)
-#sdets=sources*ifwrp(det1)*iwrp(det2)
+sdet=source*ifwrp(det1)*ifwrp(det2)
+#sdets=sources*ifwrp(det1)*ifwrp(det2)
 
-#result=fwrp(sdet)
+result=fwrp(sdet)
 #results=fwrp(sdets)))
 
-#G2=abs(result)**2
+G2=abs(result)**2
 #G2s=abs(results)**2
 
-#plot(G2)
+plot(G2)
 
 
 
