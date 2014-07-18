@@ -166,7 +166,7 @@ result=fwrp(sdet)
 
 G2=abs(result)**2
 #G2s=abs(results)**2
-plot(fftshift(fft(fftshift(source))))
+plot (fwrp(source)) #besselfunc
 #plot(G2)
 
 
