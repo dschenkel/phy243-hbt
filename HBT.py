@@ -142,17 +142,17 @@ b2=a2+dx
 
 
 #Scheiben (im Fourierraum)
-det1=source2d(2000,2000,800)
+det1=source2d(2000,2000,400)
 det2 = det1
 #eine Scheibe aus 1 und rundherum 0 (im Otsraum)
-source = source2d(2000,2000,200)
+source = source2d(2000,2000,400)
             
 #print source
 #Eine Scheibe nicht nur aus 1 sondern unregelmässig
 #sources=randsource2d(2000,2000,200)
 
 #detectors * source  und fourier davon
-sdet=source*ifwrp2(det1)*ifwrp2(det2)
+sdet=ifwrp2(source)*ifwrp2(det1)*ifwrp2(det2)
 #sdets=sources*ifwrp(det1)*ifwrp(det2)
 
 result=fwrp2(sdet)
@@ -161,7 +161,7 @@ result=fwrp2(sdet)
 G2=abs(result)**2
 #G2s=abs(results)**2
 
-#plot(fwrp(source)) #besselfunc
+plot(fwrp2(source)) #besselfunc
 
 
 #plot(G2)
