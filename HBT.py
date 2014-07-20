@@ -15,22 +15,33 @@ import matplotlib.pyplot as plt
 
 #function which delivers a point-source: width/height x/y, point source in the middle with radius r pixels
 def source2d(x,y,r):
+    res = np.zeros(dtype=complex,shape=(x,y))
+    y,x = np.ogrid[-x/2: x/2, -y/2: y/2]
+    mask = (x)**2+(y)**2 <= r**2
+    res[mask]=1
+    '''    
     res = []
     newlin = []
     for i in range (-x/2, +x/2):
-        for j in range (-y/2, +y/2):
-            if(sqrt(i**2+j**2)<=r):
+           for j in range (-y/2, +y/2):
+
+             if(sqrt(i**2+j**2)<=r):
                 newlin.append(1)
-            else:
-                newlin.append(0)
-        res.append(newlin)
-        newlin = []
-    
+           else:
+               newlin.append(0)
+       res.append(newlin)
+       newlin = []
+    '''
     return res
 
 
 #function which delivers a point-source: width/height x/y, point source in the middle with radius r pixels
 def randsource2d(x,y,r):
+    res = np.zeros(dtype=complex,shape=(x,y))
+    y,x = np.ogrid[-x/2: x/2, -y/2: y/2]
+    mask = (x)**2+(y)**2 <= r**2
+    res[mask]=randint(0,2)
+    '''    
     res = []
     newlin = []
     for i in range (-x/2, +x/2):
@@ -41,7 +52,7 @@ def randsource2d(x,y,r):
                 newlin.append(0)
         res.append(newlin)
         newlin = []
-    
+   ''' 
     return res
 #wrapper for fftshift(ifft(fftshift(var))) to make editing easier
 def fwrp(var):
@@ -142,17 +153,17 @@ b2=a2+dx
 
 
 #Scheiben (im Fourierraum)
-det1=source2d(2000,2000,400)
+det1=source2d(5000,5000,1500)
 det2 = det1
 #eine Scheibe aus 1 und rundherum 0 (im Otsraum)
-source = source2d(2000,2000,400)
-            
+source = source2d(5000,5000,1000)
+
 #print source
 #Eine Scheibe nicht nur aus 1 sondern unregelmässig
-#sources=randsource2d(2000,2000,200)
+#sources=randsource2d(2000,2000,1000)
 
 #detectors * source  und fourier davon
-sdet=ifwrp2(source)*ifwrp2(det1)*ifwrp2(det2)
+sdet=(source)*ifwrp2(det1)*ifwrp2(det2)
 #sdets=sources*ifwrp(det1)*ifwrp(det2)
 
 result=fwrp2(sdet)
@@ -161,11 +172,10 @@ result=fwrp2(sdet)
 G2=abs(result)**2
 #G2s=abs(results)**2
 
-plot(fwrp2(source)) #besselfunc
+#plot(fwrp2(source)) #besselfunc
 
 
 #plot(G2)
-
 
 #stolen from stackoverflow to test ptsource function
 fig = plt.figure(figsize=(6, 3.2))
