@@ -75,34 +75,34 @@ def ifwrp2(var):
 
 
 
-d=50
-D=5500
-x=frange(-100,100,0.01)
-r1=sqrt((d/2.+x)**2+D**2)
-r2=sqrt((-d/2.+x)**2+D**2)
-k1=pi/2
-k2=3*pi/2
-r=0.05
-g=pi*r**2*(1+exp(-1j*(k1*r1+k2*r2))*cos(k1*r1-k2*r2))
+#d=50
+#D=5500
+#x=frange(-100,100,0.01)
+#r1=sqrt((d/2.+x)**2+D**2)
+#r2=sqrt((-d/2.+x)**2+D**2)
+#k1=pi/2
+#k2=3*pi/2
+#r=0.05
+#g=pi*r**2*(1+exp(-1j*(k1*r1+k2*r2))*cos(k1*r1-k2*r2))
 
 #plot(x,g)
 
 #show()
 #K=2*pi/lambda
-k=pi/2.5
-th1=1
-th2=2
-dx=299
+#k=pi/2.5
+#th1=1
+#th2=2
+#dx=299
 #th1=sin(theta1)
 #th2=sin(theta2)
 
 #th= theta
 
-a1=frange(0,20,0.01)
-b1=a1+dx
-
-a2=50.
-b2=a2+dx
+#a1=frange(0,20,0.01)
+#b1=a1+dx
+#
+#a2=50.
+#b2=a2+dx
 
 #det1 = [0.]*(len(a1)/2-dx/2)
 #det1.extend([1./dx]*dx)
@@ -155,8 +155,9 @@ b2=a2+dx
 
 
 #Scheiben (im Fourierraum)
-det1=source2d(2000,2000,500)
-det2 = source2d(2000,2000,800)
+x=arange(0,1000,0.5)
+det1=source2d(2000,2000,x)
+det2 = det1
 #eine Scheibe aus 1 und rundherum 0 (im Otsraum)
 
 source = source2d(2000,2000,1000)
@@ -177,8 +178,9 @@ G2s=abs(results)**2
 
 #plot(fwrp2(source)) #besselfunc, Frauenhofer diffraction?
 
-plot(G2s)
-
+plot(x,G2) #G2 never 0
+print G2
+#r=200,G2=10^-3,r=0.5,G2=10^-14
 #stolen from stackoverflow to test ptsource function
 
 #fig = plt.figure(figsize=(6, 3.2))
