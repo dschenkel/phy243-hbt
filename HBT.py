@@ -37,25 +37,6 @@ def source2d(x,y,r):
 
 #function which delivers a point-source: width/height x/y, point source in the middle with radius r pixels
 
-#def randsource2d(x,y,r):
-#    res = np.zeros(dtype=complex,shape=(x,y))
-#    y,x = np.ogrid[-x/2: x/2, -y/2: y/2]
-#    mask = (x)**2+(y)**2 <= r**2
-#    res[mask]=randint(0,2)
-#    '''    
-#    res = []
-#    newlin = []
-#    for i in range (-x/2, +x/2):
-#        for j in range (-y/2, +y/2):
-#            if(sqrt(i**2+j**2)<=r):
-#                newlin.append(randint(0,2))
-#            else:
-#                newlin.append(0)
-#        res.append(newlin)
-#        newlin = []
-#   ''' 
-#    return res
-
 def randsource2d(x,y,r):
     res = np.zeros(dtype=complex,shape=(x,y))
     y,x = np.ogrid[-x/2: x/2, -y/2: y/2]
@@ -180,26 +161,23 @@ det2 = source2d(2000,2000,800)
 
 source = source2d(2000,2000,1000)
 
-source = randsource2d(2000,2000,1000)
-
-
 #print source
 #Eine Scheibe nicht nur aus 1 sondern unregelmässig
-#sources=randsource2d(2000,2000,1000)
+sources=randsource2d(2000,2000,1000)
 
 #detectors * source  und fourier davon
 sdet=(source)*ifwrp2(det1)*ifwrp2(det2)
-#sdets=sources*ifwrp(det1)*ifwrp(det2)
+sdets=sources*ifwrp2(det1)*ifwrp2(det2)
 
 result=fwrp2(sdet)
-#results=fwrp(sdets)
+results=fwrp2(sdets)
 
 G2=abs(result)**2
-#G2s=abs(results)**2
+G2s=abs(results)**2
 
 #plot(fwrp2(source)) #besselfunc, Frauenhofer diffraction?
 
-plot(G2)
+plot(G2s)
 
 #stolen from stackoverflow to test ptsource function
 
@@ -217,19 +195,7 @@ plot(G2)
 #plt.colorbar(orientation='vertical')
 #plt.show()
 
-fig = plt.figure(figsize=(6, 3.2))
 
-ax = fig.add_subplot(111)
-ax.set_title('colorMap')
-plt.imshow(randsource2d(100,100,20).real)
-ax.set_aspect('equal')
-cax = fig.add_axes([0.12, 0.1, 0.78, 0.8])
-cax.get_xaxis().set_visible(False)
-cax.get_yaxis().set_visible(False)
-cax.patch.set_alpha(0)
-cax.set_frame_on(False)
-plt.colorbar(orientation='vertical')
-plt.show()
 
 
 show()
