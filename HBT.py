@@ -36,24 +36,24 @@ def source2d(x,y,r):
 
 
 #function which delivers a point-source: width/height x/y, point source in the middle with radius r pixels
-def randsource2d(x,y,r):
-    res = np.zeros(dtype=complex,shape=(x,y))
-    y,x = np.ogrid[-x/2: x/2, -y/2: y/2]
-    mask = (x)**2+(y)**2 <= r**2
-    res[mask]=randint(0,2)
-    '''    
-    res = []
-    newlin = []
-    for i in range (-x/2, +x/2):
-        for j in range (-y/2, +y/2):
-            if(sqrt(i**2+j**2)<=r):
-                newlin.append(randint(0,2))
-            else:
-                newlin.append(0)
-        res.append(newlin)
-        newlin = []
-   ''' 
-    return res
+#def randsource2d(x,y,r):
+#    res = np.zeros(dtype=complex,shape=(x,y))
+#    y,x = np.ogrid[-x/2: x/2, -y/2: y/2]
+#    mask = (x)**2+(y)**2 <= r**2
+#    res[mask]=randint(0,2)
+#    '''    
+#    res = []
+#    newlin = []
+#    for i in range (-x/2, +x/2):
+#        for j in range (-y/2, +y/2):
+#            if(sqrt(i**2+j**2)<=r):
+#                newlin.append(randint(0,2))
+#            else:
+#                newlin.append(0)
+#        res.append(newlin)
+#        newlin = []
+#   ''' 
+#    return res
 #wrapper for fftshift(ifft(fftshift(var))) to make editing easier
 def fwrp(var):
     return fftshift(fft(fftshift(var)))
@@ -153,10 +153,10 @@ b2=a2+dx
 
 
 #Scheiben (im Fourierraum)
-det1=source2d(5000,5000,1500)
-det2 = det1
+det1=source2d(2000,2000,500)
+det2 = source2d(2000,2000,800)
 #eine Scheibe aus 1 und rundherum 0 (im Otsraum)
-source = source2d(5000,5000,1000)
+source = source2d(2000,2000,1000)
 
 #print source
 #Eine Scheibe nicht nur aus 1 sondern unregelmässig
@@ -172,25 +172,24 @@ result=fwrp2(sdet)
 G2=abs(result)**2
 #G2s=abs(results)**2
 
-#plot(fwrp2(source)) #besselfunc
+#plot(fwrp2(source)) #besselfunc, Frauenhofer diffraction?
 
-
-#plot(G2)
+plot(G2)
 
 #stolen from stackoverflow to test ptsource function
-fig = plt.figure(figsize=(6, 3.2))
-
-ax = fig.add_subplot(111)
-ax.set_title('colorMap')
-plt.imshow(G2)
-ax.set_aspect('equal')
-cax = fig.add_axes([0.12, 0.1, 0.78, 0.8])
-cax.get_xaxis().set_visible(False)
-cax.get_yaxis().set_visible(False)
-cax.patch.set_alpha(0)
-cax.set_frame_on(False)
-plt.colorbar(orientation='vertical')
-plt.show()
+#fig = plt.figure(figsize=(6, 3.2))
+#
+#ax = fig.add_subplot(111)
+#ax.set_title('colorMap')
+#plt.imshow(G2)
+#ax.set_aspect('equal')
+#cax = fig.add_axes([0.12, 0.1, 0.78, 0.8])
+#cax.get_xaxis().set_visible(False)
+#cax.get_yaxis().set_visible(False)
+#cax.patch.set_alpha(0)
+#cax.set_frame_on(False)
+#plt.colorbar(orientation='vertical')
+#plt.show()
 
 show()
 
