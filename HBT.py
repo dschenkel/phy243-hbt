@@ -160,11 +160,11 @@ det1=source2d(200,200,10)
 det2 = det1
 #eine Scheibe aus 1 und rundherum 0 (im Otsraum)
 
-source = source2d(200,200,10)
+source = source2d(200,200,50)
 
 #print source
 #Eine Scheibe nicht nur aus 1 sondern unregelmässig
-sources=randsource2d(200,200,100)
+sources=randsource2d(200,200,50)
 
 #detectors * source  und fourier davon
 sdet=(source)*ifwrp2(det1)*ifwrp2(det2)
@@ -176,27 +176,27 @@ results=fwrp2(sdets)
 G2=abs(result)**2
 G2s=abs(results)**2
 
-#plot(fwrp2(source)) #besselfunc, Frauenhofer diffraction?
-
+#plot(fwrp2(source).real) #besselfunc, Frauenhofer diffraction?
+#plot(G2)
 #G2 never 0
-print G2
+
 
 
 #stolen from stackoverflow to test ptsource function
 
-#fig = plt.figure(figsize=(6, 3.2))
-#
-#ax = fig.add_subplot(111)
-#ax.set_title('colorMap')
-#plt.imshow(G2)
-#ax.set_aspect('equal')
-#cax = fig.add_axes([0.12, 0.1, 0.78, 0.8])
-#cax.get_xaxis().set_visible(False)
-#cax.get_yaxis().set_visible(False)
-#cax.patch.set_alpha(0)
-#cax.set_frame_on(False)
-#plt.colorbar(orientation='vertical')
-#plt.show()
+fig = plt.figure(figsize=(6, 3.2))
+
+ax = fig.add_subplot(111)
+ax.set_title('colorMap')
+plt.imshow(G2-G2s)
+ax.set_aspect('equal')
+cax = fig.add_axes([0.12, 0.1, 0.78, 0.8])
+cax.get_xaxis().set_visible(False)
+cax.get_yaxis().set_visible(False)
+cax.patch.set_alpha(0)
+cax.set_frame_on(False)
+plt.colorbar(orientation='vertical')
+plt.show()
 
 show()
 
