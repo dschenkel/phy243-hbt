@@ -40,7 +40,7 @@ def randsource2d(x,y,r):
     res = np.zeros(dtype=complex,shape=(x,y))
     y,x = np.ogrid[-x/2: x/2, -y/2: y/2]
     mask = (x)**2+(y)**2 <= r**2
-    res[mask]=randint(0,2)
+    res[mask]=np.round(np.random.rand(sum(mask))*2)
     '''    
     res = []
     newlin = []
@@ -156,7 +156,7 @@ b2=a2+dx
 det1=source2d(5000,5000,1500)
 det2 = det1
 #eine Scheibe aus 1 und rundherum 0 (im Otsraum)
-source = source2d(5000,5000,1000)
+source = randsource2d(5000,5000,1000)
 
 #print source
 #Eine Scheibe nicht nur aus 1 sondern unregelmässig
@@ -182,7 +182,7 @@ fig = plt.figure(figsize=(6, 3.2))
 
 ax = fig.add_subplot(111)
 ax.set_title('colorMap')
-plt.imshow(G2)
+plt.imshow(randsource2d(100,100,20).real)
 ax.set_aspect('equal')
 cax = fig.add_axes([0.12, 0.1, 0.78, 0.8])
 cax.get_xaxis().set_visible(False)
