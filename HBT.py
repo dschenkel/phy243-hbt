@@ -155,16 +155,16 @@ def ifwrp2(var):
 
 
 #Scheiben (im Fourierraum)
-x=arange(0,1000,0.5)
-det1=source2d(2000,2000,x)
+
+det1=source2d(200,200,10)
 det2 = det1
 #eine Scheibe aus 1 und rundherum 0 (im Otsraum)
 
-source = source2d(2000,2000,1000)
+source = source2d(200,200,10)
 
 #print source
 #Eine Scheibe nicht nur aus 1 sondern unregelmässig
-sources=randsource2d(2000,2000,1000)
+sources=randsource2d(200,200,100)
 
 #detectors * source  und fourier davon
 sdet=(source)*ifwrp2(det1)*ifwrp2(det2)
@@ -178,9 +178,10 @@ G2s=abs(results)**2
 
 #plot(fwrp2(source)) #besselfunc, Frauenhofer diffraction?
 
-plot(x,G2) #G2 never 0
+#G2 never 0
 print G2
-#r=200,G2=10^-3,r=0.5,G2=10^-14
+
+
 #stolen from stackoverflow to test ptsource function
 
 #fig = plt.figure(figsize=(6, 3.2))
@@ -196,9 +197,6 @@ print G2
 #cax.set_frame_on(False)
 #plt.colorbar(orientation='vertical')
 #plt.show()
-
-
-
 
 show()
 
