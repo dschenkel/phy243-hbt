@@ -36,7 +36,7 @@ def source2d(x,y,r):
 
 
 #function which delivers a point-source: width/height x/y, point source in the middle with radius r pixels
-<<<<<<< HEAD
+
 #def randsource2d(x,y,r):
 #    res = np.zeros(dtype=complex,shape=(x,y))
 #    y,x = np.ogrid[-x/2: x/2, -y/2: y/2]
@@ -55,7 +55,7 @@ def source2d(x,y,r):
 #        newlin = []
 #   ''' 
 #    return res
-=======
+
 def randsource2d(x,y,r):
     res = np.zeros(dtype=complex,shape=(x,y))
     y,x = np.ogrid[-x/2: x/2, -y/2: y/2]
@@ -74,7 +74,7 @@ def randsource2d(x,y,r):
         newlin = []
    ''' 
     return res
->>>>>>> origin/master
+
 #wrapper for fftshift(ifft(fftshift(var))) to make editing easier
 def fwrp(var):
     return fftshift(fft(fftshift(var)))
@@ -177,11 +177,11 @@ b2=a2+dx
 det1=source2d(2000,2000,500)
 det2 = source2d(2000,2000,800)
 #eine Scheibe aus 1 und rundherum 0 (im Otsraum)
-<<<<<<< HEAD
+
 source = source2d(2000,2000,1000)
-=======
-source = randsource2d(5000,5000,1000)
->>>>>>> origin/master
+
+source = randsource2d(2000,2000,1000)
+
 
 #print source
 #Eine Scheibe nicht nur aus 1 sondern unregelmässig
@@ -202,7 +202,7 @@ G2=abs(result)**2
 plot(G2)
 
 #stolen from stackoverflow to test ptsource function
-<<<<<<< HEAD
+
 #fig = plt.figure(figsize=(6, 3.2))
 #
 #ax = fig.add_subplot(111)
@@ -216,7 +216,7 @@ plot(G2)
 #cax.set_frame_on(False)
 #plt.colorbar(orientation='vertical')
 #plt.show()
-=======
+
 fig = plt.figure(figsize=(6, 3.2))
 
 ax = fig.add_subplot(111)
@@ -230,7 +230,7 @@ cax.patch.set_alpha(0)
 cax.set_frame_on(False)
 plt.colorbar(orientation='vertical')
 plt.show()
->>>>>>> origin/master
+
 
 show()
 
