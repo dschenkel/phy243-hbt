@@ -156,11 +156,11 @@ def ifwrp2(var):
 
 #Scheiben (im Fourierraum)
 
-det1=source2d(200,200,10)
+det1=source2d(200,200,50)
 det2 = det1
 #eine Scheibe aus 1 und rundherum 0 (im Otsraum)
 
-source = source2d(200,200,50)
+source = source2d(200,200,10)
 
 #print source
 #Eine Scheibe nicht nur aus 1 sondern unregelmässig
@@ -176,7 +176,7 @@ results=fwrp2(sdets)
 G2=abs(result)**2
 G2s=abs(results)**2
 
-#plot(fwrp2(source).real) #besselfunc, Frauenhofer diffraction?
+#plot(fwrp2(source).imag) #besselfunc, Frauenhofer diffraction?
 #plot(G2)
 #G2 never 0
 
@@ -188,7 +188,7 @@ fig = plt.figure(figsize=(6, 3.2))
 
 ax = fig.add_subplot(111)
 ax.set_title('colorMap')
-plt.imshow(G2-G2s)
+plt.imshow(fwrp2(source).real)
 ax.set_aspect('equal')
 cax = fig.add_axes([0.12, 0.1, 0.78, 0.8])
 cax.get_xaxis().set_visible(False)
