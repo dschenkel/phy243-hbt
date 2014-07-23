@@ -41,10 +41,14 @@ def randsource2d(x,y,r):
     res = np.zeros(dtype=complex,shape=(x,y))
     y,x = np.ogrid[-x/2: x/2, -y/2: y/2]
     mask1 = (x)**2+(y)**2 <= r**2
-    mask2 = (x-5)**2+(y)**2 <= (r-3)**2
+    mask2 = (x-5)**2+(y+15)**2 <= (r-45)**2
+    mask3 = (x+10)**2+(y-20)**2 <= (r-40)**2
+    mask4 = (x-30)**2+(y+10)**2 <= (r-40)**2
     #res[mask]=np.round(np.random.rand(sum(mask))*2)
     res[mask1]=1
     res[mask2]=2
+    res[mask3]=3
+    res[mask4]=2
     '''    
     res = []
     newlin = []
@@ -59,14 +63,19 @@ def randsource2d(x,y,r):
    ''' 
     return res
 
+x,y = meshgrid(x,y)
+Z = randsource2d(200,200,50).T
+fig, ax = plt.subplots()
+plt.imshow(Z.real)
+
+
 #wrapper for fftshift(ifft(fftshift(var))) to make editing easier
 def fwrp(var):
     return fftshift(fft(fftshift(var)))
 
 def ifwrp(var):
     return ifftshift(ifft(ifftshift(var)))
-    
-    
+        
 def fwrp2(var):
     return fftshift(fft2(fftshift(var)))
 
@@ -183,7 +192,7 @@ G2s=abs(results)**2
 #plot(fwrp2(source).imag) #besselfunc, Frauenhofer diffraction?
 #plot(G2)
 #G2 never 0
-plot(sources)
+
 
 
 #stolen from stackoverflow to test ptsource function
@@ -201,6 +210,7 @@ cax.patch.set_alpha(0)
 cax.set_frame_on(False)
 plt.colorbar(orientation='vertical')
 plt.show()
+
 
 show()
 
