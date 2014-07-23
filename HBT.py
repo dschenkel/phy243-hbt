@@ -36,11 +36,19 @@ def source2d(x,y,r):
 
 
 #function which delivers a point-source: width/height x/y, point source in the middle with radius r pixels
+
 def randsource2d(x,y,r):
     res = np.zeros(dtype=complex,shape=(x,y))
     y,x = np.ogrid[-x/2: x/2, -y/2: y/2]
-    mask = (x)**2+(y)**2 <= r**2
-    res[mask]=np.round(np.random.rand(sum(mask))*2)
+    mask1 = (x)**2+(y)**2 <= r**2
+    mask2 = (x-5)**2+(y+15)**2 <= (r-45)**2
+    mask3 = (x+10)**2+(y-20)**2 <= (r-40)**2
+    mask4 = (x-30)**2+(y+10)**2 <= (r-40)**2
+    #res[mask]=np.round(np.random.rand(sum(mask))*2)
+    res[mask1]=1
+    res[mask2]=2
+    res[mask3]=3
+    res[mask4]=2
     '''    
     res = []
     newlin = []
@@ -54,14 +62,16 @@ def randsource2d(x,y,r):
         newlin = []
    ''' 
     return res
+
+
+
 #wrapper for fftshift(ifft(fftshift(var))) to make editing easier
 def fwrp(var):
     return fftshift(fft(fftshift(var)))
 
 def ifwrp(var):
     return ifftshift(ifft(ifftshift(var)))
-    
-    
+        
 def fwrp2(var):
     return fftshift(fft2(fftshift(var)))
 
@@ -73,34 +83,34 @@ def ifwrp2(var):
 
 
 
-d=50
-D=5500
-x=frange(-100,100,0.01)
-r1=sqrt((d/2.+x)**2+D**2)
-r2=sqrt((-d/2.+x)**2+D**2)
-k1=pi/2
-k2=3*pi/2
-r=0.05
-g=pi*r**2*(1+exp(-1j*(k1*r1+k2*r2))*cos(k1*r1-k2*r2))
+#d=50
+#D=5500
+#x=frange(-100,100,0.01)
+#r1=sqrt((d/2.+x)**2+D**2)
+#r2=sqrt((-d/2.+x)**2+D**2)
+#k1=pi/2
+#k2=3*pi/2
+#r=0.05
+#g=pi*r**2*(1+exp(-1j*(k1*r1+k2*r2))*cos(k1*r1-k2*r2))
 
 #plot(x,g)
 
 #show()
 #K=2*pi/lambda
-k=pi/2.5
-th1=1
-th2=2
-dx=299
+#k=pi/2.5
+#th1=1
+#th2=2
+#dx=299
 #th1=sin(theta1)
 #th2=sin(theta2)
 
 #th= theta
 
-a1=frange(0,20,0.01)
-b1=a1+dx
-
-a2=50.
-b2=a2+dx
+#a1=frange(0,20,0.01)
+#b1=a1+dx
+#
+#a2=50.
+#b2=a2+dx
 
 #det1 = [0.]*(len(a1)/2-dx/2)
 #det1.extend([1./dx]*dx)
@@ -151,47 +161,47 @@ b2=a2+dx
 #    print 'G:' + str(G)
 
 
+x,y = 200, 200
+x,y = meshgrid(x,y)
+Z = randsource2d(200,200,50).T
+
+
 
 #Scheiben (im Fourierraum)
-det1=source2d(5000,5000,1500)
+
+det1=source2d(200,200,50)
 det2 = det1
+det3=det2
 #eine Scheibe aus 1 und rundherum 0 (im Otsraum)
-source = randsource2d(5000,5000,1000)
+
+source = source2d(200,200,10)
 
 #print source
 #Eine Scheibe nicht nur aus 1 sondern unregelmässig
-#sources=randsource2d(2000,2000,1000)
+sources=randsource2d(200,200,50)
+fig, ax = plt.subplots()
+plt.imshow(sources.T.real)
 
 #detectors * source  und fourier davon
 sdet=(source)*ifwrp2(det1)*ifwrp2(det2)
-#sdets=sources*ifwrp(det1)*ifwrp(det2)
+sdets=sources*ifwrp2(det1)*ifwrp2(det2)#*ifwrp2(det3)
 
 result=fwrp2(sdet)
-#results=fwrp(sdets)
+results=fwrp2(sdets)
 
 G2=abs(result)**2
-#G2s=abs(results)**2
+G2s=abs(results)**2
 
-#plot(fwrp2(source)) #besselfunc
-
-
+#plot(fwrp2(source).imag) #besselfunc, Frauenhofer diffraction?
 #plot(G2)
+#G2 never 0
 
-#stolen from stackoverflow to test ptsource function
-fig = plt.figure(figsize=(6, 3.2))
 
-ax = fig.add_subplot(111)
-ax.set_title('colorMap')
-plt.imshow(randsource2d(100,100,20).real)
-ax.set_aspect('equal')
-cax = fig.add_axes([0.12, 0.1, 0.78, 0.8])
-cax.get_xaxis().set_visible(False)
-cax.get_yaxis().set_visible(False)
-cax.patch.set_alpha(0)
-cax.set_frame_on(False)
-plt.colorbar(orientation='vertical')
+
+# new figure
+plt.figure()
+plt.imshow(fwrp2(sources).imag)
 plt.show()
 
+
 show()
-
-
