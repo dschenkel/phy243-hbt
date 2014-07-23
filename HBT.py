@@ -40,8 +40,11 @@ def source2d(x,y,r):
 def randsource2d(x,y,r):
     res = np.zeros(dtype=complex,shape=(x,y))
     y,x = np.ogrid[-x/2: x/2, -y/2: y/2]
-    mask = (x)**2+(y)**2 <= r**2
-    res[mask]=np.round(np.random.rand(sum(mask))*2)
+    mask1 = (x)**2+(y)**2 <= r**2
+    mask2 = (x-5)**2+(y)**2 <= (r-3)**2
+    #res[mask]=np.round(np.random.rand(sum(mask))*2)
+    res[mask1]=1
+    res[mask2]=2
     '''    
     res = []
     newlin = []
@@ -158,6 +161,7 @@ def ifwrp2(var):
 
 det1=source2d(200,200,50)
 det2 = det1
+det3=det2
 #eine Scheibe aus 1 und rundherum 0 (im Otsraum)
 
 source = source2d(200,200,10)
@@ -168,7 +172,7 @@ sources=randsource2d(200,200,50)
 
 #detectors * source  und fourier davon
 sdet=(source)*ifwrp2(det1)*ifwrp2(det2)
-sdets=sources*ifwrp2(det1)*ifwrp2(det2)
+sdets=sources*ifwrp2(det1)*ifwrp2(det2)#*ifwrp2(det3)
 
 result=fwrp2(sdet)
 results=fwrp2(sdets)
@@ -179,7 +183,7 @@ G2s=abs(results)**2
 #plot(fwrp2(source).imag) #besselfunc, Frauenhofer diffraction?
 #plot(G2)
 #G2 never 0
-
+plot(sources)
 
 
 #stolen from stackoverflow to test ptsource function
@@ -188,7 +192,7 @@ fig = plt.figure(figsize=(6, 3.2))
 
 ax = fig.add_subplot(111)
 ax.set_title('colorMap')
-plt.imshow(fwrp2(source).real)
+plt.imshow(fwrp2(sources).imag)
 ax.set_aspect('equal')
 cax = fig.add_axes([0.12, 0.1, 0.78, 0.8])
 cax.get_xaxis().set_visible(False)
