@@ -162,7 +162,6 @@ def ifwrp2(var):
 #    print 'G:' + str(G)
 
 
-#x,y = 200, 200
 #x,y = meshgrid(x,y)
 #Z = randsource2d(200,200,50).T
 
@@ -170,16 +169,20 @@ def ifwrp2(var):
 
 #Scheiben (im Fourierraum)
 
-det1=source2d(200,200,50)
+
+x,y = 200, 200
+
+
+det1=source2d(x,y,50)
 det2 = det1
 det3=det2
 #eine Scheibe aus 1 und rundherum 0 (im Otsraum)
 
-source = source2d(200,200,10)
+source = source2d(x,y,10)
 
 #print source
 #Eine Scheibe nicht nur aus 1 sondern unregelmässig
-sources=randsource2d(200,200,50)
+sources=randsource2d(x,y,50)
 
 fig, ax = plt.subplots()
 plt.imshow(sources.T.real)
@@ -207,4 +210,3 @@ plt.imshow(fwrp2(sources).imag)
 plt.show()
 
 
-show()
