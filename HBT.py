@@ -63,13 +63,7 @@ def randsource2d(x,y,r):
    ''' 
     return res
 
-<<<<<<< HEAD
-=======
-x,y = meshgrid(x,y)
-Z = randsource2d(200,200,50).T
-fig, ax = plt.subplots()
-plt.imshow(Z.real)
->>>>>>> FETCH_HEAD
+
 
 
 #wrapper for fftshift(ifft(fftshift(var))) to make editing easier
@@ -168,9 +162,9 @@ def ifwrp2(var):
 #    print 'G:' + str(G)
 
 
-x,y = 200, 200
-x,y = meshgrid(x,y)
-Z = randsource2d(200,200,50).T
+#x,y = 200, 200
+#x,y = meshgrid(x,y)
+#Z = randsource2d(200,200,50).T
 
 
 
@@ -186,11 +180,10 @@ source = source2d(200,200,10)
 #print source
 #Eine Scheibe nicht nur aus 1 sondern unregelmässig
 sources=randsource2d(200,200,50)
-<<<<<<< HEAD
+
 fig, ax = plt.subplots()
 plt.imshow(sources.T.real)
-=======
->>>>>>> FETCH_HEAD
+
 
 #detectors * source  und fourier davon
 sdet=(source)*ifwrp2(det1)*ifwrp2(det2)
@@ -208,32 +201,10 @@ G2s=abs(results)**2
 
 
 
-<<<<<<< HEAD
 # new figure
 plt.figure()
 plt.imshow(fwrp2(sources).imag)
 plt.show()
 
-=======
-#stolen from stackoverflow to test ptsource function
-
-fig = plt.figure(figsize=(6, 3.2))
-
-ax = fig.add_subplot(111)
-ax.set_title('colorMap')
-plt.imshow(fwrp2(sources).imag)
-ax.set_aspect('equal')
-cax = fig.add_axes([0.12, 0.1, 0.78, 0.8])
-cax.get_xaxis().set_visible(False)
-cax.get_yaxis().set_visible(False)
-cax.patch.set_alpha(0)
-cax.set_frame_on(False)
-plt.colorbar(orientation='vertical')
-plt.show()
-
-
-show()
-
->>>>>>> FETCH_HEAD
 
 show()
