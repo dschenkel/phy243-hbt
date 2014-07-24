@@ -62,8 +62,7 @@ def randsource2d(x,y,r):
         newlin = []
    ''' 
     return res
-
-x,y = meshgrid(x,y)
+    
 Z = randsource2d(200,200,50).T
 fig, ax = plt.subplots()
 plt.imshow(Z.real)
@@ -173,7 +172,7 @@ det2 = det1
 det3=det2
 #eine Scheibe aus 1 und rundherum 0 (im Otsraum)
 
-source = source2d(200,200,10)
+source = source2d(200,200,30)
 
 #print source
 #Eine Scheibe nicht nur aus 1 sondern unregelmässig
