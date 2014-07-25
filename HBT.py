@@ -74,7 +74,7 @@ N=x
 
 delk=2*pi/(N*delx)
 
-norm=delk
+#norm=
 
 def fwrp(var):
     return fftshift(fft(fftshift(var)))
@@ -185,7 +185,7 @@ det2 = det1
 det3=det2
 
 #eine Scheibe aus 1 und rundherum 0 (im Otsraum)
-source = source2d(x,y,10)
+source = source2d(x,y,20)
 
 #Eine Scheibe nicht nur aus 1 sondern unregelmässig
 sources=randsource2d(x,y,50)
@@ -201,15 +201,14 @@ results=fwrp2(sdets)
 G2=abs(result)**2
 G2s=abs(results)**2
 
-#plot(fwrp2(source).imag) #besselfunc, Frauenhofer diffraction?
-#plot(G2)
-#G2 never 0
-
+#norm
+z=ifwrp2(fwrp2(source))/source
+print z[199]
 
 # new figure
 fig, ax = plt.subplots()
-plt.imshow(sources.real)
-plt.figure()
+#plt.imshow(sources.real)
+#plt.figure()
 plt.imshow(G2)
 plt.show()
 plt.colorbar()
