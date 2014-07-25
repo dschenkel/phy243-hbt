@@ -62,18 +62,20 @@ def randsource2d(x,y,r):
         newlin = []
    ''' 
     return res
-<<<<<<< HEAD
+
     
-Z = randsource2d(200,200,50).T
-fig, ax = plt.subplots()
-plt.imshow(Z.real)
-=======
 
-
->>>>>>> origin/master
-
+x,y = 200, 200
 
 #wrapper for fftshift(ifft(fftshift(var))) to make editing easier
+delx=10**-9
+
+N=x
+
+delk=2*pi/(N*delx)
+
+norm=delk
+
 def fwrp(var):
     return fftshift(fft(fftshift(var)))
 
@@ -81,11 +83,13 @@ def ifwrp(var):
     return ifftshift(ifft(ifftshift(var)))
         
 def fwrp2(var):
-    return fftshift(fft2(fftshift(var)))
+    return fftshift(fft2(fftshift(var)))*(delx)**2
 
 def ifwrp2(var):
-    return ifftshift(ifft2(ifftshift(var)))
-    
+    return ifftshift(ifft2(ifftshift(var)))#*(norm)**2
+
+
+
 
 
 
@@ -169,34 +173,22 @@ def ifwrp2(var):
 #    print 'G:' + str(G)
 
 
-#x,y = meshgrid(x,y)
+
 #Z = randsource2d(200,200,50).T
 
 
 
 #Scheiben (im Fourierraum)
 
-
-x,y = 200, 200
-
-
 det1=source2d(x,y,50)
 det2 = det1
 det3=det2
+
 #eine Scheibe aus 1 und rundherum 0 (im Otsraum)
-
-<<<<<<< HEAD
-source = source2d(200,200,30)
-=======
 source = source2d(x,y,10)
->>>>>>> origin/master
 
-#print source
 #Eine Scheibe nicht nur aus 1 sondern unregelmässig
 sources=randsource2d(x,y,50)
-
-fig, ax = plt.subplots()
-plt.imshow(sources.T.real)
 
 
 #detectors * source  und fourier davon
@@ -214,10 +206,11 @@ G2s=abs(results)**2
 #G2 never 0
 
 
-
 # new figure
+fig, ax = plt.subplots()
+plt.imshow(sources.real)
 plt.figure()
-plt.imshow(fwrp2(sources).imag)
+plt.imshow(G2)
 plt.show()
-
+plt.colorbar()
 
