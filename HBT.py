@@ -203,13 +203,15 @@ G2s=abs(results)**2
 
 #norm
 z=ifwrp2(fwrp2(source))/source
+#z[abs(z)==inf] = np.nan
+z[abs(z)==inf] = 0
 print z[199]
 
 # new figure
 fig, ax = plt.subplots()
 #plt.imshow(sources.real)
 #plt.figure()
-plt.imshow(G2)
+plt.imshow(z.real)
 plt.show()
 plt.colorbar()
 
