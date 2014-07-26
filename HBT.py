@@ -71,10 +71,10 @@ x,y = 200, 200
 delx=10**-9
 
 N=x
-
+print delk
 delk=2*pi/(N*delx)
+print delk**2
 
-#norm=
 
 def fwrp(var):
     return fftshift(fft(fftshift(var)))
@@ -86,7 +86,7 @@ def fwrp2(var):
     return fftshift(fft2(fftshift(var)))*(delx)**2
 
 def ifwrp2(var):
-    return ifftshift(ifft2(ifftshift(var)))#*(norm)**2
+    return ifftshift(ifft2(ifftshift(var)))*(delk)**2
 
 
 
@@ -205,13 +205,13 @@ G2s=abs(results)**2
 z=ifwrp2(fwrp2(source))/source
 #z[abs(z)==inf] = np.nan
 z[abs(z)==inf] = 0
-print z[199]
+print z[100]
 
 # new figure
 fig, ax = plt.subplots()
 #plt.imshow(sources.real)
 #plt.figure()
-plt.imshow(z.real)
+plt.imshow(results.real)
 plt.show()
 plt.colorbar()
 
