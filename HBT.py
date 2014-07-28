@@ -68,10 +68,10 @@ def randsource2d(x,y,r):
 x,y = 200, 200
 
 #wrapper for fftshift(ifft(fftshift(var))) to make editing easier
-delx=10**-9
+delx=10**-2
 
 N=x
-print delk
+
 delk=2*pi/(N*delx)
 print delk**2
 
@@ -86,7 +86,7 @@ def fwrp2(var):
     return fftshift(fft2(fftshift(var)))*(delx)**2
 
 def ifwrp2(var):
-    return ifftshift(ifft2(ifftshift(var)))*(delk)**2
+    return ifftshift(ifft2(ifftshift(var)))/(delx)**2
 
 
 
@@ -202,7 +202,7 @@ G2=abs(result)**2
 G2s=abs(results)**2
 
 #norm
-z=ifwrp2(fwrp2(source))/source
+z=ifwrp2(fwrp2(source))-source
 #z[abs(z)==inf] = np.nan
 z[abs(z)==inf] = 0
 print z[100]
@@ -211,7 +211,7 @@ print z[100]
 fig, ax = plt.subplots()
 #plt.imshow(sources.real)
 #plt.figure()
-plt.imshow(results.real)
+plt.imshow(result.real)
 plt.show()
 plt.colorbar()
 
