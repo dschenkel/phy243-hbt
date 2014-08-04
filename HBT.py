@@ -8,6 +8,8 @@ Created on Tue Jul 01 15:56:58 2014
 from pylab import *
 from scipy.integrate import quad
 from math import factorial
+from mpl_toolkits.axes_grid1 import make_axes_locatable
+
 import numpy as np
 import matplotlib as ml
 import matplotlib.pyplot as plt
@@ -205,13 +207,39 @@ G2s=abs(results)**2
 z=ifwrp2(fwrp2(source))-source
 #z[abs(z)==inf] = np.nan
 z[abs(z)==inf] = 0
-print z[100]
+#print z[100]
 
 # new figure
-fig, ax = plt.subplots()
+fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2,2)
 #plt.imshow(sources.real)
 #plt.figure()
-plt.imshow(result.real)
+im1 = ax1.imshow(sources.real)
+im2 = ax2.imshow(G2s)
+im3 = ax3.imshow(results.real)
+im4 = ax4.imshow(results.imag)
+
+divider1 = make_axes_locatable(ax1)
+cax1 = divider1.append_axes("right", size="7%", pad=0.05)
+cbar1 = plt.colorbar(im1, cax=cax1)
+cbar1.set_label('Intensity')
+
+
+divider2 = make_axes_locatable(ax2)
+cax2 = divider2.append_axes("right", size="7%", pad=0.05)
+cbar2 = plt.colorbar(im2, cax=cax2)
+cbar2.set_label('|Visibility|^2')
+
+divider3 = make_axes_locatable(ax3)
+cax3 = divider3.append_axes("right", size="7%", pad=0.05)
+cbar3 = plt.colorbar(im3, cax=cax3)
+cbar3.set_label('Re(Visibility)')
+
+divider4 = make_axes_locatable(ax4)
+cax4 = divider4.append_axes("right", size="7%", pad=0.05)
+cbar4 = plt.colorbar(im4, cax=cax4)
+cbar4.set_label('Im(Visibility)')
+
+plt.tight_layout()
+
 plt.show()
-plt.colorbar()
 
