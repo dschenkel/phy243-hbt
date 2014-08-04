@@ -73,7 +73,7 @@ delx=10**-2
 N=x
 
 delk=2*pi/(N*delx)
-print delk**2
+#print delk**2
 
 
 def fwrp(var):
