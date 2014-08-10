@@ -1,0 +1,23 @@
+Abstract
+Simulation of HBT Interferometer assuming detectors are NOT point-sized but have spatial extent. We find that the result does not fundamentally change compared to the point-size case, but the contrast gets worse.
+
+
+
+Introduction
+- HBT effect (double slit)
+- in astronomy
+- assumption of point detector
+
+Method: Expanding the detectors
+ 2 det case
+ - analytical solution (integral)
+ - simulation
+
+ 3 Detector Case
+ - expanding 2 det case
+
+Interpretation
+ - contrast worse
+
+Conclusion
+ - result more or less the same, but with less contrast
