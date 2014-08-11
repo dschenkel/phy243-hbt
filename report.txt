@@ -10,6 +10,8 @@ Introduction
 
 Method: Expanding the detectors
  2 det case
+ - 1 dim case (2  point sources, to be sure that G2 gets to 0 at detector seperation = fringewidth)
+ - 2 dim case (1 'big' source, homogen, inhomogen)
  - analytical solution (integral)
  - simulation
 
@@ -18,6 +20,7 @@ Method: Expanding the detectors
 
 Interpretation
  - contrast worse
+ - in 3 detector case: imaginary part is different as in the 2 det case (meaning? important?)
 
 Conclusion
  - result more or less the same, but with less contrast
