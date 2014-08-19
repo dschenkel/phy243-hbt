@@ -49,7 +49,7 @@ def randsource2d(x,y,r):
     #res[mask]=np.round(np.random.rand(sum(mask))*2)
     res[mask1]=1
     res[mask2]=2
-    res[mask3]=3
+    res[mask3]=2
     res[mask4]=2
     '''    
     res = []

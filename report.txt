@@ -4,19 +4,29 @@ Simulation of HBT Interferometer assuming detectors are NOT point-sized but have
 
 
 Introduction
-- HBT effect (double slit)
-- in astronomy
-- assumption of point detector
+The HBT effect describes the fact that light from an incoherent source when measured at two points will produce a coincidence rate which is slightly higher than the expected Poisson coincidence rate. This additional term in the coincidence rate is the HBT effect and it can be used to do intensity interferometry on stars with two detectors as done by Hanbury Brown & Twiss (195?). More recently, research has been done on the feasibility of using three detectors to recover the phase information a well. Most of this research has been done assuming that only the source has a spatial extent, with the detectors being point-sized. In this paper we analyze if and how detectors with spatial extent affect the result. First we present an analytical solution in a simplified 1-Dimensional double-slit situation with two detectors. We then expand our model into two dimensions and analyze the results for both two and three detectors.
+
 
 Method: Expanding the detectors
+In its simplest form, the HBT effect can be thought of as Young’s double slit experiment done with an incoherent light source. In such a case the correlation at any point on the screen is G(2) as shown by Glauber (2006; eq 19?++). By integrating G(2)=blablabla over ±∆x we get the signal as measured by a detector with spatial extent. To verify our result, we test the case in which the detector size is approximately the same as the fringe with. As expected, the measured signal drops to zero (fig. X).
+
+The same result can be found by taking the fourier transform of the source and multiplying it with the detectors. This will be used to facilitate the simulation of the 2d case. 
+
+In the 2-Dimensional case the source is not a double slit anymore but a disk of point sources. This source can either be homogenous or an in homogenous source with different valued spots (see fig. X). The detectors are equally modeled by a uniform disk. 
+ 
  2 det case
- - 1 dim case (2  point sources, to be sure that G2 gets to 0 at detector seperation = fringewidth)
- - 2 dim case (1 'big' source, homogen, inhomogen)
- - analytical solution (integral)
- - simulation
+ - 1 dim case (2  point sources, to be sure that G2 gets to 0 at detector separation = fringewidth)
+	- analytical solution (integral) by convoluting G2 with detector
+ 	we get it to 0
+ - same result when using fourier transforms -> we now know that this works
+
+- 2 dim case (1 'big' source, homogen, inhomogen)
+
+ - simulation -> fourier
+ - 2d case by modeling disks. same model can be used for source and detector. 2 sources: either a homogenous one which is a simple disk, or an inhomogenous source with different valued spots on it (see fig.)
 
  3 Detector Case
- - expanding 2 det case
+ - expanding 2 det case. a simple matter of adding another term due to the doing it all in the k-space? place-space?
 
 Interpretation
  - contrast worse
