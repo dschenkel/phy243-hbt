@@ -1,4 +1,4 @@
-﻿Abstract
+Abstract
 Simulation of HBT Interferometer assuming detectors are NOT point-sized but have spatial extent. We find that the result does not fundamentally change compared to the point-size case, but the contrast gets worse.
 
 
@@ -8,7 +8,7 @@ The HBT effect describes the fact that light from an incoherent source when meas
 
 
 Method: Expanding the detectors
-In its simplest form, the HBT effect can be thought of as Young’s double slit experiment done with an incoherent light source. In such a case the correlation at any point on the screen is G(2) as shown by Glauber (2006; eq 19?++). By integrating G(x1,x2)=exp(ik(x1-x2)theta1)+exp(ik(x1-x2)theta2) and G(x2,x1)= exp(ik(x2-x1)theta1)+exp(ik(x2-x1)theta2) over ±∆x and than take the absolut value we get the signal as measured by a detector with spatial extent. To verify our result, we test the case in which the detector size is approximately the same as the fringe with. As expected, the measured signal drops to zero (fig. X).
+In its simplest form, the HBT effect can be thought of as Young’s double slit experiment done with an incoherent light source. In such a case the correlation at any point on the screen is G(2) as shown by Glauber (2006; eq 19?++). By integrating G(x1,x2)=exp(ik(x1-x2)theta1)+exp(ik(x1-x2)theta2) and G(x2,x1)= exp(ik(x2-x1)theta1)+exp(ik(x2-x1)theta2) over ±∆x and taking the absolute value we get the signal as measured by a detector with a spatial extent 2∆x. To verify our result, we test the case in which the detector size is approximately the same as the fringe with. As expected, the measured signal drops to zero (fig. X).
 
 The same result can be found by taking the fourier transform of the source and multiplying it with the detectors. This will be used to facilitate the simulation of the 2d case. 
 

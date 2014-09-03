@@ -111,24 +111,25 @@ def ifwrp2(var):
 
 #show()
 #K=2*pi/lambda
-#k=pi/2.5
-#th1=1
-#th2=2
-#dx=299
+k=pi/2.5
+th1=1
+th2=2
+dx=499
 #th1=sin(theta1)
 #th2=sin(theta2)
 
 #th= theta
 
-#a1=frange(0,20,0.01)
-#b1=a1+dx
+a1=frange(0,20,0.01)
+b1=a1+dx
 #
-#a2=50.
-#b2=a2+dx
+a2=50.
+b2=a2+dx
 
-#det1 = [0.]*(len(a1)/2-dx/2)
-#det1.extend([1./dx]*dx)
-#det1.extend([0.]*(len(a1)/2-dx/2))
+det_alt = [0.]*(len(a1)/2-dx/2)
+det_alt.extend([1./dx]*dx)
+det_alt.extend([0.]*(len(a1)/2-dx/2))
+
 #
 #det2 = [0.]*(len(a1)/2-dx/2)
 #det2.extend([1./dx]*dx)
@@ -148,17 +149,20 @@ def ifwrp2(var):
 #G21=(exp(-1j*k*(b1-b2)*th1)-exp(-1j*k*(a1-b2)*th1)-exp(-1j*k*(b1-a2)*th1)+exp(-1j*k*(a1-a2)*th1)) + (1/(k*th2))**2*((exp(-1j*k*(b1-b2)*th2))-exp(-1j*k*(a1-b2)*th2)-exp(-1j*k*(b1-a2)*th2)+exp(-1j*k*(a1-a2)*th2))
 
 #G12_redux=(exp(1j*(k*(b1-b2)*(th1-th2)/2))+exp(-1j*(k*(b1-b2)*(th1-th2)/2)))*exp(1j*k*(b1-b2)*(th1+th2)/2)-(exp(1j*(k*(a1-b2)*(th1-th2)/2))+exp(-1j*(k*(a1-b2)*(th1-th2)/2)))*exp(1j*k*(a1-b2)*(th1+th2)/2)-(exp(1j*(k*(b1-a2)*(th1-th2)/2))+exp(-1j*(k*(b1-a2)*(th1-th2)/2)))*exp(1j*k*(b1-a2)*(th1+th2)/2)+(exp(1j*(k*(a1-a2)*(th1-th2)/2))+exp(-1j*(k*(a1-a2)*(th1-th2)/2)))*exp(1j*k*(a1-a2)*(th1+th2)/2)
-#x=(b2+a2)/2 - (b1+a1)/2
+x_alt=(b2+a2)/2 - (b1+a1)/2
 #
-#gg12 = exp(1j*k*(x)*th1)+exp(1j*k*(x)*th2)
+gg12 = exp(1j*k*(x_alt)*th1)+exp(1j*k*(x_alt)*th2)
 #gg21 = exp(-1j*k*(x)*th1)+exp(-1j*k*(x)*th2)
 #
-#FFg = ifftshift(ifft(ifftshift(gg12)))
-#res = FFg*ifftshift(ifft(ifftshift(det1)))*ifftshift(ifft(ifftshift(det2)))
+FFg = ifwrp(gg12)
+res_alt = FFg*ifwrp(det_alt)*ifwrp(det_alt)
 #
 #G2 = G12*G21
 #G2 = G12_redux*G12_redux.conjugate()
-#plot(x,abs(fftshift(fft(fftshift(res))))**2)
+plot(x_alt,abs(fwrp(res_alt)**2))
+xlabel('detector distance [px]')
+ylabel('|G2|^2')
+#    gms.append(gm)
 #plot(gg12.real)
 #plot(x,G2)
 #print G2
@@ -169,7 +173,6 @@ def ifwrp2(var):
 #    gamma= (quad(lambda t: t**(m+1)*exp(-t), 0, Inf))[0]
 #    #print 'gamma: ' + str(gamma)
 #    gm = (-1)**m*(x/2)**(2*m+1)/(factorial(m)*gamma)
-#    gms.append(gm)
 #    print 'gm: ' + str(gm)
 #    G = G + gm
 #    print 'G:' + str(G)
@@ -182,7 +185,7 @@ def ifwrp2(var):
 
 #Scheiben (im Fourierraum)
 
-det1=source2d(x,y,50)
+det1=source2d(x,y,1)
 det2 = det1
 det3=det2
 

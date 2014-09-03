@@ -1,0 +1,14 @@
+
+*.aux
+
+*.bbl
+
+*.blg
+
+*.dvi
+
+*.log
+
+*.tmproj
+
+*.swp
