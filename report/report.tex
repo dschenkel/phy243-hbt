@@ -84,7 +84,7 @@ To verify our result, we test the case in which the detector size is approximate
 \end{figure}
 The integral is basically a convolution of the expected signal at point detectors convolved with detectors with a spatial extent. Hence, the same result can also be found by taking the inverse fourier transform of \(G^{(1)}(x_1 x_2)\), which then represents the source, and multiplying it with the inverse fourier of the detectors, represented by rect-functions. The multiplication in the position space is equal to the convolution in the fourier space. By taking the fourier transformation and then the absolute value squared of it this yields the same result as our analytical solution, except for a constant factor which has to be added due to the non-steady nature of the (inverse) fast fourier transform functions used to compute the results. In our case this constant factor $\Delta x$ for the fourier transformation and $\Delta x^{-1}$ for the inverse fourier transformation has the order of magnitude of arc seconds respectively arc seconds$^{-1}$. It has to verify the relation $N\Delta x\Delta k=2\pi$ where N is the size of our position space, which corresponds to 512 units of space (pixels) in our case. $\Delta k$ is the correction constant in the fourier space.
 \subsection{2-Dimensional Case}
-In the 2-Dimensional case the source is not a double slit anymore but a disk made up of individual point sources. This source can either be homogenous or an inhomogenous source with different valued spots (see fig. \ref{fig:2d_sources}, modelled after \cite{wentz2014}). The sources are being created by the function source2d and randsource2d respectively (See Appendix A).
+In the 2-Dimensional case the source is not a double slit anymore but a disk made up of individual point sources. This source can either be homogenous or an inhomogenous source with different valued spots (see fig. \ref{fig:2d_sources}, modelled after \cite{wentz2014}). The sources are being created by the function \textit{source2d} and \textit{randsource2d} respectively (See Appendix A).
 
 The detectors are also modelled with a uniform disk. Because they move and detect in k-space they are disks in the fourier space. We then multiply the source with the inverse fourier transformation of the detectors and transform it back in the fourier space to get \(G^{(2)}\) for the 2d case. 
 
@@ -92,15 +92,15 @@ The detectors are also modelled with a uniform disk. Because they move and detec
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[ht!]
 	\centering
-    \includegraphics[scale=0.5]{figure_results_ptsized}
-    \caption{Resulting signal at a detector with radius 1 pixel (point-size detector approximation), slightly enlarged to see more details \label{fig:result_1px}
+    \includegraphics[scale=0.51]{figure_results_ptsized}
+    \caption{Resulting signal at two detectors with radius 1 pixel (point-size detector approximation), slightly enlarged to see more details \label{fig:result_1px}
  }
 \end{figure}
 
 \begin{figure}[ht!]
 	\centering
-    \includegraphics[scale=0.5]{figure_results}
-    \caption{Resulting signal at a detector with radius 50 pixels \label{fig:result_50px}
+    \includegraphics[scale=0.51]{figure_results}
+    \caption{Resulting signal at two detectors, each with radius 50 pixels \label{fig:result_50px}
  }
 \end{figure}
 \section{Results}\label{results}
